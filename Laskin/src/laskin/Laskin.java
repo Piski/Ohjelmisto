@@ -25,6 +25,9 @@ public class Laskin {
     }
 
     public void jaa(int n) {
+        if(n == 0) {
+            throw new ArithmeticException();
+        }
         tulos = tulos / n;
     }
 
@@ -33,6 +36,9 @@ public class Laskin {
     }
 
     public void neliojuuri(int n) {
+        if(n < 0) {
+            throw new ArithmeticException();
+        }
         double res = Math.sqrt(n);
         tulos = (int) res;
     }

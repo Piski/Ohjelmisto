@@ -26,7 +26,7 @@ public class ExtraTest extends AbstractParent {
 
     @Before
     public void testNollaa() {
-        System.out.println("  Nollaa laskin.");
+        System.out.println("Nollaa laskin.");
         laskin.nollaa();
     }
 
@@ -34,6 +34,18 @@ public class ExtraTest extends AbstractParent {
     @Test(timeout = 1000)
     public void testNeliojuuri2() {
         laskin.neliojuuri(2);
+    }
+
+    @Test(timeout = 1000)
+    public void testNeliojuuri16() {
+        laskin.neliojuuri(16);
+        assertEquals("neliojuuri(16)", 4, laskin.annaTulos());
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testNeliojuuriError() {
+        laskin.neliojuuri(-1);
+        assertEquals("neliojuuri(-1)", new ArithmeticException(), laskin.annaTulos());
     }
 
     @Test
@@ -53,5 +65,4 @@ public class ExtraTest extends AbstractParent {
         laskin.nelio(5);
         assertEquals("nelio(5) ", 25, laskin.annaTulos());
     }
-
 }
