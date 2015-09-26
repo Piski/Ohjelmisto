@@ -2,13 +2,13 @@ package laskin;
 
 public class Laskin {
 
-    private static int tulos;  // Muuttuja tulokselle
+    private static double tulos;  // Muuttuja tulokselle
     
     public void nollaa() {     // Nollaa tuloksen
         tulos = 0;
     }
 
-    public int annaTulos() {
+    public double annaTulos() {
         return tulos;
     }
     
@@ -40,7 +40,7 @@ public class Laskin {
             throw new ArithmeticException();
         }
         double res = Math.sqrt(n);
-        tulos = (int) res;
+        tulos = res;
     }
     
     public void virtaON() {

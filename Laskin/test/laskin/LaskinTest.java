@@ -22,21 +22,21 @@ public class LaskinTest {
     public void testLisaa() {
         laskin.lisaa(1);
         laskin.lisaa(1);
-        assertEquals("1 + 1 ", 2, laskin.annaTulos());
+        assertEquals("1 + 1 ", 2, laskin.annaTulos(), 0.001);
     }
 
     @Test
     public void testVahenna() {
         laskin.lisaa(10);
         laskin.vahenna(2);
-        assertEquals("10 - 2 ", 8, laskin.annaTulos());
+        assertEquals("10 - 2 ", 8, laskin.annaTulos(), 0.001);
     }
 
     @Test
     public void testJaa() {
         laskin.lisaa(8);
         laskin.jaa(2);
-        assertEquals("8 / 2", 4, laskin.annaTulos());
+        assertEquals("8 / 2", 4, laskin.annaTulos(), 0.001);
     }
 
     // Nollalla jaon pitäisi heittää poikkeus
@@ -49,6 +49,6 @@ public class LaskinTest {
     public void testKerro() {
         laskin.lisaa(10);
         laskin.kerro(10);
-        assertEquals("10 * 10 ", 100, laskin.annaTulos());
+        assertEquals("10 * 10 ", 100, laskin.annaTulos(), 0.001);
     }
 }
