@@ -26,9 +26,10 @@ public class Laskin {
 
     public void jaa(int n) {
         if(n == 0) {
-            throw new ArithmeticException();
+            throw new ArithmeticException("Division with zero");
+        } else {
+            tulos = tulos / n;
         }
-        tulos = tulos / n;
     }
 
     public void nelio(int n) {
@@ -37,10 +38,10 @@ public class Laskin {
 
     public void neliojuuri(int n) {
         if(n < 0) {
-            throw new ArithmeticException();
+            throw new ArithmeticException("Square root with negative number");
+        } else {
+            tulos = Math.sqrt(n);
         }
-        double res = Math.sqrt(n);
-        tulos = res;
     }
     
     public void virtaON() {
