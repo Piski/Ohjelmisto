@@ -14,15 +14,6 @@ public class Template {
         values = new HashMap<String, String>();
     }
 
-    public String getTemplate() {
-        return template;
-    }
-
-    public void clear() {
-        template = "";
-        values.clear();
-    }
-
     public void korvaa(String changeFromValue, String changeToValue) {
         values.put(changeFromValue, changeToValue);
     }
