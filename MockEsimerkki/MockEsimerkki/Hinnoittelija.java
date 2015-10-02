@@ -1,4 +1,4 @@
-package mockesimerkki;
+package MockEsimerkki;
 
 public class Hinnoittelija {
 

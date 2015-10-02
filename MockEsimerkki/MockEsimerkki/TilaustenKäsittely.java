@@ -1,5 +1,5 @@
 
-package mockesimerkki;
+package MockEsimerkki;
 
 public class TilaustenKäsittely {
 
