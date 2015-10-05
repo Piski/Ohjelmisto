@@ -36,7 +36,7 @@ public class TilaustenKasittelyEasyMockTest {
     */
 
     @Test
-    public void testaaKäsittelijäWithEasyMockHinnoittelija1() {
+    public void testaaKäsittelijäWithEasyMockHinnoittelijaUnder100() {
         float alkuSaldo = 100.0f;
         float listaHinta = 50.0f;
         float alennus = 20.0f;
@@ -56,13 +56,13 @@ public class TilaustenKasittelyEasyMockTest {
         kasittelija.setHinnoittelija(hinnoittelija);
         kasittelija.käsittele(new Tilaus(asiakas, tuote));
 
-        assertEquals(loppuSaldo, asiakas.getSaldo(), 0.001);
+        assertEquals("List price under 100", loppuSaldo, asiakas.getSaldo(), 0.001);
         verify(hinnoittelija);
         reset(hinnoittelija);
     }
 
     @Test
-    public void testaaKäsittelijäWithEasyMockhinnoittelija2() {
+    public void testaaKäsittelijäWithEasyMockhinnoittelijaOver100() {
         float alkuSaldo = 100.0f;
         float listaHinta = 250.0f;
         float alennus = 20.0f;
@@ -83,8 +83,7 @@ public class TilaustenKasittelyEasyMockTest {
         kasittelija.setHinnoittelija(hinnoittelija);
         kasittelija.käsittele(new Tilaus(asiakas, tuote));
 
-        assertEquals(loppuSaldo, asiakas.getSaldo(), 0.001);
+        assertEquals("List price over 100", loppuSaldo, asiakas.getSaldo(), 0.001);
         verify(hinnoittelija);
-        reset(hinnoittelija);
     }
 }
