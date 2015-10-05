@@ -14,4 +14,5 @@ public class FakeHinnoittelija extends Hinnoittelija {
     public float getAlennusProsentti(Asiakas asiakas, Tuote tuote) {
         return alennus;
     }
+
 }

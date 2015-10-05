@@ -7,9 +7,9 @@ import org.junit.Test;
 public class TilaustenKasittelyFakeTest {
 
     @Test
-    public void testaaKasittelijaWithFakeHinnoittelija() {
+    public void testaaKasittelijaWithFakeHinnoittelija1() {
         float alkuSaldo = 100.0f;
-        float listaHinta = 30.0f;
+        float listaHinta = 300.0f;
         float alennus = 20.0f;
         float loppuSaldo = alkuSaldo - (listaHinta * (1 - alennus / 100));
 

@@ -7,6 +7,7 @@ import static org.easymock.EasyMock.*;
 
 public class TilaustenKasittelyEasyMockTest {
 
+    /*
     @Test
     public void testaaKäsittelijäWithEasyMockHinnoittelija() {
         // arrange
@@ -31,5 +32,59 @@ public class TilaustenKasittelyEasyMockTest {
         // assert
         assertEquals(loppuSaldo, asiakas.getSaldo(), 0.001);
         verify(hinnoittelija);
+    }
+    */
+
+    @Test
+    public void testaaKäsittelijäWithEasyMockHinnoittelija1() {
+        float alkuSaldo = 100.0f;
+        float listaHinta = 50.0f;
+        float alennus = 20.0f;
+        float loppuSaldo = alkuSaldo - (listaHinta * (1 - alennus / 100));
+
+        Asiakas asiakas = new Asiakas(alkuSaldo);
+        Tuote tuote = new Tuote("TDD in Action", listaHinta);
+        Hinnoittelija hinnoittelija = createMock(Hinnoittelija.class);
+
+        hinnoittelija.aloita();
+        expect(hinnoittelija.getAlennusProsentti(asiakas, tuote)).andReturn(alennus);
+        expectLastCall().times(2);
+        hinnoittelija.lopeta();
+        replay(hinnoittelija);
+
+        TilaustenKäsittely kasittelija = new TilaustenKäsittely();
+        kasittelija.setHinnoittelija(hinnoittelija);
+        kasittelija.käsittele(new Tilaus(asiakas, tuote));
+
+        assertEquals(loppuSaldo, asiakas.getSaldo(), 0.001);
+        verify(hinnoittelija);
+        reset(hinnoittelija);
+    }
+
+    @Test
+    public void testaaKäsittelijäWithEasyMockhinnoittelija2() {
+        float alkuSaldo = 100.0f;
+        float listaHinta = 250.0f;
+        float alennus = 20.0f;
+        float loppuSaldo = alkuSaldo - (listaHinta * (1 - alennus / 100));
+
+        Asiakas asiakas = new Asiakas(alkuSaldo);
+        Tuote tuote = new Tuote("TDD in Action", listaHinta);
+        Hinnoittelija hinnoittelija = createMock(Hinnoittelija.class);
+
+        hinnoittelija.aloita();
+        expect(hinnoittelija.getAlennusProsentti(asiakas, tuote)).andReturn(alennus);
+        expectLastCall().times(2);
+        hinnoittelija.setAlennusProsentti(asiakas, alennus + 5);
+        hinnoittelija.lopeta();
+        replay(hinnoittelija);
+
+        TilaustenKäsittely kasittelija = new TilaustenKäsittely();
+        kasittelija.setHinnoittelija(hinnoittelija);
+        kasittelija.käsittele(new Tilaus(asiakas, tuote));
+
+        assertEquals(loppuSaldo, asiakas.getSaldo(), 0.001);
+        verify(hinnoittelija);
+        reset(hinnoittelija);
     }
 }
