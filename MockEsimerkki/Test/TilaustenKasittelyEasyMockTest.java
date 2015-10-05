@@ -59,7 +59,7 @@ public class TilaustenKasittelyEasyMockTest {
         assertEquals("List price under 100", loppuSaldo, asiakas.getSaldo(), 0.001);
         verify(hinnoittelija);
     }
-it
+
     @Test
     public void testaaKäsittelijäWithEasyMockhinnoittelijaOver100() {
         float alkuSaldo = 100.0f;
