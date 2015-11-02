@@ -2,14 +2,14 @@ CC=g++
 CFLAGS=-c -Wall
 DIR="Ohjelmisto/viikko10"
 
-all: kertomasovellus
+all: git kertomasovellus clean
 
-kertomasovellus: git main.o kertoma.o
+kertomasovellus: main.o kertoma.o
 	@if [ -f "main.cpp" ] && [ -f "kertoma.cpp" ] ; then \
-		$(CC) main.o kertoma.o -o app; \
+		$(CC) main.o kertoma.o -o kertoma; \
 	elif [ -f "Ohjelmisto/viikko10/main.cpp" ] && [ -f "Ohjelmisto/viikko10/kertoma.cpp" ] ; then \
 		cd $(DIR); \
-		$(CC) main.o kertoma.o -o app; \
+		$(CC) main.o kertoma.o -o kertoma; \
 	else \
 		echo "files not found"; \
 	fi
@@ -44,11 +44,11 @@ kertoma.o:
 	fi
 
 clean:
-	@if [ -f "app" ] ; then \
-		rm *o app; \
-	elif [ -f "Ohjelmisto/viikko10/app" ] ; then \
+	@if [ -f "kertoma" ] ; then \
+		rm *o; \
+	elif [ -f "Ohjelmisto/viikko10/kertoma" ] ; then \
 		cd $(DIR); \
-		rm *o app; \
+		rm *o; \
 	else \
-		echo "no app file found"; \
+		echo "no kertoma file found"; \
 	fi
