@@ -1,58 +1,22 @@
-CC=g++
-CFLAGS=-c -Wall
-DIR="Ohjelmisto/viikko10/teht1"
+CC = g++
+CFLAGS =-c -Wall
+OBJS = kello.o kello_main.o viisari.o
+SRCS = $(OBJS:.o=.cpp)
+APP = Kello
 
-all: git kertomasovellus clean
+all: svn-export $(APP) svn-import clean
 
-kertomasovellus: main.o kertoma.o
-	echo "Running kertomasovellus ..."
-	@if [ -f "main.cpp" ] && [ -f "kertoma.cpp" ] ; then \
-		$(CC) main.o kertoma.o -o kertoma; \
-	elif [ -f "Ohjelmisto/viikko10/teht1/main.cpp" ] && [ -f "Ohjelmisto/viikko10/teht1/kertoma.cpp" ] ; then \
-		cd $(DIR); \
-		$(CC) main.o kertoma.o -o kertoma; \
-	else \
-		echo "files not found"; \
-	fi
+$(APP): $(OBJS)
+	$(CC) $(OBJS) -o $(APP)
 
-git:
-	@if [ -d "Ohjelmisto/" ] ; then \
-		&& cd "Ohjelmisto" && git pull; \
-	elif [ -f "main.cpp" ] && [ -f "kertoma.cpp" ] && [ -f "functions.h" ] ; then \
-		git pull; \
-	else \
-		git clone "git@github.com:Piski/Ohjelmisto.git"; \
-	fi
+svn-export:
+	svn export --username m0602227 "https://innoscm.edusrv.metropolia.fi/svn/ohteha/trunk/Kellokay/src/"
 
-main.o: 
-	"main.cpp found"
-	@if [ -f "main.cpp" ] ; then \
-		$(CC) $(CFLAGS) main.cpp; \
-	elif [ -f "Ohjelmisto/viikko10/teht1/main.cpp" ] ; then \
-		cd $(DIR); \
-		$(CC) $(CFLAGS) main.cpp; \
-	else \
-		echo "no main.cpp file found"; \
-	fi
+svn-import:
+	svn import --username m0602227 "https://innoscm.edusrv.metropolia.fi/svn/ohteha-exam/2015/autumn/m0602227/trunk/Kellokay/src/"
 
-kertoma.o:
-	echo "kertoma.cpp found"
-	@if [ -f "kertoma.cpp" ] ; then \
-		$(CC) $(CFLAGS) kertoma.cpp; \
-	elif [ -f "Ohjelmisto/viikko10/teht1/kertoma.cpp" ] ; then \
-		cd $(DIR); \
-		$(CC) $(CFLAGS) kertoma.cpp; \
-	else \
-		echo "no kertoma.cpp file found"; \
-	fi
+$(OBJS):
+	$(CC) $(CFLAGS) $(SRCS)	
 
 clean:
-	echo "cleaning excess files ..."
-	@if [ -f "kertoma" ] ; then \
-		rm *o; \
-	elif [ -f "Ohjelmisto/viikko10/teht1/kertoma" ] ; then \
-		cd $(DIR); \
-		rm *o; \
-	else \
-		echo "no kertoma file found"; \
-	fi
+	rm *o
