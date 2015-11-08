@@ -3,6 +3,34 @@
 
     <target name="run" depends="init, compile, tilit, use, clean"/>
 
+    <target name="init">
+        <git command="pull" dir="."/>
+    </target>
+
+	<target name="compile">
+		<mkdir dir="build" />
+		<javac srcdir="src" destdir="build" includes="**/*.java" target="1.8"/>
+  	</target>
+
+	<target name="tilit">
+	<manifest file="MANIFEST.MF">
+	  <attribute name="Main-Class"
+		         value="TiliTesti" />
+	</manifest>
+	   <jar destfile="Tiliprojekti.jar" manifest="MANIFEST.MF" basedir="build">
+	   </jar>
+	</target>
+
+	<target name="use">
+        <java jar="Tiliprojekti.jar" fork="true"/>
+    </target>
+
+	<target name="clean">
+        <delete dir="build"/>
+		<delete file="MANIFEST.MF"/>
+		<delete file="Tiliprojekti.jar"/>
+    </target>
+
     <macrodef name = "git">
     <attribute name = "command" />
     <attribute name = "dir" default = "" />
@@ -13,19 +41,6 @@
             <arg value = "@{command}" />
             <args/>
         </exec>
-    </sequential>
-</macrodef>
-<macrodef name = "git-clone-pull">
-    <attribute name = "repository" />
-    <attribute name = "dest" />
-    <sequential>
-        <git command = "clone">
-            <args>
-                <arg value = "@{repository}" />
-                <arg value = "@{dest}" />
-            </args>
-        </git>
-        <git command = "pull" dir = "@{dest}" />
     </sequential>
 </macrodef>
 </project>
