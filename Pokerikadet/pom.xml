@@ -6,7 +6,7 @@
 	<artifactId>my-app</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>my-app</name>
+	<name>PokeriKadet</name>
 
   <!-- Basic info -->
 
@@ -32,6 +32,16 @@
   </build>
   <!-- Reports  paths-->
 	<reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>3.4</version>
+          <configuration>
+            <skipEmptyReport>false</skipEmptyReport>
+          </configuration>
+        </plugin>
+      </plugins>
     <outputDirectory>target/site</outputDirectory>
   </reporting>
   <!-- Plugins -->
